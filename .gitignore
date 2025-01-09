@@ -1,0 +1,10 @@
+**/.DS_Store
+
+# Ignote the build folders
+Practice/Windows/VisualStudio/Practice/x64/
+
+Practice/Windows/VisualStudio/Practice/CP/x64/
+
+Practice/Windows/VisualStudio/Practice/.vs/
+
+Practice/Windows/VisualStudio/Practice/.vs/Practice/v17/Browse.VC.db
