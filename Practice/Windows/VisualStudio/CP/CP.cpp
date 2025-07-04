@@ -10,45 +10,38 @@ using namespace std;
 const int MAX_ARRAY = 1000000;
 
 // #define ONLINE_JUDGE
-#define MULTIPLE
+#define MULTIPLE 1
+
+template <typename T>
+void print(const T& cont) {
+    cout << "[";
+    for(const auto& in : cont) {
+        cout << in << ", ";
+    }
+    cout << "]\n";
+}
 
 uint64_t getMS() {
     auto time = std::chrono::high_resolution_clock::now().time_since_epoch();
     return std::chrono::duration_cast<std::chrono::milliseconds>(time).count();
 }
 
-void solve() {
-    int64_t n, q;
-    cin >> n >> q;
+inline void solve(const int testCase) {
+    int n, idx{};
+    std::string str = "aeiou";
+    cin >> n;
 
-    std::vector<int> input(n);
-    for(auto& in : input) {
-        cin >> in;
+    std::string output{};
+    for(int i = 0; i < n; i++) {
+        idx = i % 5;
+        output.push_back(str[idx]);
     }
 
-    int a, b;
-    for(int i = 0; i < q; i++) {
-        cin >> a >> b;
-        std::map<int, int> count;
-
-        bool no = false;
-        const auto mx = (b - a + 1) / 2;
-        for(int j = a - 1; j < b; j++) {
-            count[input[j]]++;
-            if(count[input[j]] > mx) {
-                cout << "NO" << endl;
-                no = true;
-                break;
-            }
-        }
-        if(!no) {
-            cout << "YES" << endl;
-        }
-    }
+    std::sort(output.begin(), output.end());
+    std::cout << output << std::endl;
 }
 
 int main() {
-
     /* #ifndef ONLINE_JUDGE
         auto read = freopen("Input.txt", "r", stdin);
         auto write = freopen("Output.txt", "w", stdout);
@@ -63,8 +56,9 @@ int main() {
 #ifdef MULTIPLE
     cin >> tests;
 #endif
-    while(tests--) {
-        solve();
+    int testCount{};
+    while(testCount++ != tests) {
+        solve(testCount);
     }
     return 0;
 }
