@@ -27,18 +27,34 @@ uint64_t getMS() {
 }
 
 inline void solve(const int testCase) {
-    int n, idx{};
-    std::string str = "aeiou";
+    int n;
     cin >> n;
-
-    std::string output{};
+    int input[800][800];
     for(int i = 0; i < n; i++) {
-        idx = i % 5;
-        output.push_back(str[idx]);
+        for(int j = 0; j < n; j++) {
+            cin >> input[i][j];
+        }
     }
 
-    std::sort(output.begin(), output.end());
-    std::cout << output << std::endl;
+    int total{};
+    std::vector<int> output;
+    for(int i = 0; i < n; i++) {
+        output.push_back(input[0][i]);
+        total += input[0][i];
+    }
+
+    for(int i = 1; i < n; i++) {
+        output.push_back(input[i][n - 1]);
+        total += input[i][n - 1];
+    }
+
+    n *= 2;
+    const auto rem = ((n * (n + 1)) / 2) - total;
+    output.insert(output.begin(), rem);
+    for(auto out : output) {
+        std::cout << out << " ";
+    }
+    std::cout << std::endl;
 }
 
 int main() {
