@@ -27,34 +27,15 @@ uint64_t getMS() {
 }
 
 inline void solve(const int testCase) {
-    int n;
-    cin >> n;
-    int input[800][800];
-    for(int i = 0; i < n; i++) {
-        for(int j = 0; j < n; j++) {
-            cin >> input[i][j];
-        }
-    }
+    std::string str;
+    cin >> str;
 
-    int total{};
-    std::vector<int> output;
-    for(int i = 0; i < n; i++) {
-        output.push_back(input[0][i]);
-        total += input[0][i];
+    int cnt0{}, cnt1{};
+    for(auto ch : str) {
+        ch == '0' ? ++cnt0 : ++cnt1;
     }
-
-    for(int i = 1; i < n; i++) {
-        output.push_back(input[i][n - 1]);
-        total += input[i][n - 1];
-    }
-
-    n *= 2;
-    const auto rem = ((n * (n + 1)) / 2) - total;
-    output.insert(output.begin(), rem);
-    for(auto out : output) {
-        std::cout << out << " ";
-    }
-    std::cout << std::endl;
+    cnt0 = min(cnt0, cnt1);
+    std::cout << (cnt0 & 1 ? "DA" : "NET") << std::endl;
 }
 
 int main() {
